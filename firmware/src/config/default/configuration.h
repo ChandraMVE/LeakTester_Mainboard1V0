@@ -92,6 +92,21 @@ extern "C" {
 // Section: Driver Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* I2C Driver Instance 0 Configuration Options */
+#define DRV_I2C_INDEX_0                       0
+#define DRV_I2C_CLIENTS_NUMBER_IDX0           1
+#define DRV_I2C_CLOCK_SPEED_IDX0              50000
+
+/* I2C Driver Common Configuration Options */
+#define DRV_I2C_INSTANCES_NUMBER              1
+
+
+/* USART Driver Instance 0 Configuration Options */
+#define DRV_USART_INDEX_0                  0
+#define DRV_USART_CLIENTS_NUMBER_IDX0      1
+
+/* USART Driver Global Configuration Options */
+#define DRV_USART_INSTANCES_NUMBER         1
 
 
 // *****************************************************************************
@@ -99,6 +114,48 @@ extern "C" {
 // Section: Middleware & Other Library Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* Number of Endpoints used */
+#define DRV_USBFS_ENDPOINTS_NUMBER                        4
+
+/* The USB Device Layer will not initialize the USB Driver */
+#define USB_DEVICE_DRIVER_INITIALIZE_EXPLICIT
+
+/* Maximum device layer instances */
+#define USB_DEVICE_INSTANCES_NUMBER                         1
+
+/* EP0 size in bytes */
+#define USB_DEVICE_EP0_BUFFER_SIZE                          64
+
+
+/* Maximum instances of CDC function driver */
+#define USB_DEVICE_CDC_INSTANCES_NUMBER                     1
+
+
+/* CDC Transfer Queue Size for both read and
+   write. Applicable to all instances of the
+   function driver */
+#define USB_DEVICE_CDC_QUEUE_DEPTH_COMBINED                 3
+
+/*** USB Driver Configuration ***/
+
+/* Maximum USB driver instances */
+#define DRV_USBFS_INSTANCES_NUMBER                        1
+
+/* Interrupt mode enabled */
+#define DRV_USBFS_INTERRUPT_MODE                          true
+
+
+/* Enables Device Support */
+#define DRV_USBFS_DEVICE_SUPPORT                          true
+	
+/* Disable Host Support */
+#define DRV_USBFS_HOST_SUPPORT                            false
+
+
+
+/* Alignment for buffers that are submitted to USB Driver*/ 
+#define USB_ALIGN  CACHE_ALIGN
+
 
 
 // *****************************************************************************

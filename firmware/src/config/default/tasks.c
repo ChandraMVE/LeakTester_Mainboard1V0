@@ -54,11 +54,22 @@
 #include "definitions.h"
 #include "../../Pharmeg/LeakTester_Mainboard1V0.h"
 
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
+void _USB_DEVICE_Tasks(  void *pvParameters  )
+{
+    while(1)
+    {
+                /* USB Device layer tasks routine */
+        USB_DEVICE_Tasks(sysObj.usbDevObject0);
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
+}
+
 /* Handle for the APP_Tasks. */
 TaskHandle_t xAPP_Tasks;
 
@@ -118,6 +129,16 @@ void SYS_Tasks ( void )
 
     /* Maintain Middleware & Other Libraries */
     
+    /* Create OS Thread for USB_DEVICE_Tasks. */
+    xTaskCreate( _USB_DEVICE_Tasks,
+        "USB_DEVICE_TASKS",
+        1024,
+        (void*)NULL,
+        1,
+        (TaskHandle_t*)NULL
+    );
+
+
 
     /* Maintain the application's state machine. */
         /* Create OS Thread for APP_Tasks. */

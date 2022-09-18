@@ -99,6 +99,103 @@
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+// <editor-fold defaultstate="collapsed" desc="DRV_I2C Instance 0 Initialization Data">
+
+/* I2C Client Objects Pool */
+static DRV_I2C_CLIENT_OBJ drvI2C0ClientObjPool[DRV_I2C_CLIENTS_NUMBER_IDX0];
+
+/* I2C PLib Interface Initialization */
+const DRV_I2C_PLIB_INTERFACE drvI2C0PLibAPI = {
+
+    /* I2C PLib Transfer Read Add function */
+    .read = (DRV_I2C_PLIB_READ)I2C2_Read,
+
+    /* I2C PLib Transfer Write Add function */
+    .write = (DRV_I2C_PLIB_WRITE)I2C2_Write,
+
+
+    /* I2C PLib Transfer Write Read Add function */
+    .writeRead = (DRV_I2C_PLIB_WRITE_READ)I2C2_WriteRead,
+
+    /*I2C PLib Transfer Abort function */
+    .transferAbort = (DRV_I2C_PLIB_TRANSFER_ABORT)I2C2_TransferAbort,
+
+    /* I2C PLib Transfer Status function */
+    .errorGet = (DRV_I2C_PLIB_ERROR_GET)I2C2_ErrorGet,
+
+    /* I2C PLib Transfer Setup function */
+    .transferSetup = (DRV_I2C_PLIB_TRANSFER_SETUP)I2C2_TransferSetup,
+
+    /* I2C PLib Callback Register */
+    .callbackRegister = (DRV_I2C_PLIB_CALLBACK_REGISTER)I2C2_CallbackRegister,
+};
+
+
+/* I2C Driver Initialization Data */
+const DRV_I2C_INIT drvI2C0InitData =
+{
+    /* I2C PLib API */
+    .i2cPlib = &drvI2C0PLibAPI,
+
+    /* I2C Number of clients */
+    .numClients = DRV_I2C_CLIENTS_NUMBER_IDX0,
+
+    /* I2C Client Objects Pool */
+    .clientObjPool = (uintptr_t)&drvI2C0ClientObjPool[0],
+
+    /* I2C Clock Speed */
+    .clockSpeed = DRV_I2C_CLOCK_SPEED_IDX0,
+};
+
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc="DRV_USART Instance 0 Initialization Data">
+
+static DRV_USART_CLIENT_OBJ drvUSART0ClientObjPool[DRV_USART_CLIENTS_NUMBER_IDX0];
+
+
+const DRV_USART_PLIB_INTERFACE drvUsart0PlibAPI = {
+    .readCallbackRegister = (DRV_USART_PLIB_READ_CALLBACK_REG)UART2_ReadCallbackRegister,
+    .read = (DRV_USART_PLIB_READ)UART2_Read,
+    .readIsBusy = (DRV_USART_PLIB_READ_IS_BUSY)UART2_ReadIsBusy,
+    .readCountGet = (DRV_USART_PLIB_READ_COUNT_GET)UART2_ReadCountGet,
+    .readAbort = (DRV_USART_PLIB_READ_ABORT)UART2_ReadAbort,
+    .writeCallbackRegister = (DRV_USART_PLIB_WRITE_CALLBACK_REG)UART2_WriteCallbackRegister,
+    .write = (DRV_USART_PLIB_WRITE)UART2_Write,
+    .writeIsBusy = (DRV_USART_PLIB_WRITE_IS_BUSY)UART2_WriteIsBusy,
+    .writeCountGet = (DRV_USART_PLIB_WRITE_COUNT_GET)UART2_WriteCountGet,
+    .errorGet = (DRV_USART_PLIB_ERROR_GET)UART2_ErrorGet,
+    .serialSetup = (DRV_USART_PLIB_SERIAL_SETUP)UART2_SerialSetup
+};
+
+const uint32_t drvUsart0remapDataWidth[] = { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0x0, 0x6 };
+const uint32_t drvUsart0remapParity[] = { 0x0, 0x2, 0x4, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF };
+const uint32_t drvUsart0remapStopBits[] = { 0x0, 0xFFFFFFFF, 0x1 };
+const uint32_t drvUsart0remapError[] = { 0x2, 0x8, 0x4 };
+
+const DRV_USART_INIT drvUsart0InitData =
+{
+    .usartPlib = &drvUsart0PlibAPI,
+
+    /* USART Number of clients */
+    .numClients = DRV_USART_CLIENTS_NUMBER_IDX0,
+
+    /* USART Client Objects Pool */
+    .clientObjPool = (uintptr_t)&drvUSART0ClientObjPool[0],
+
+
+    .remapDataWidth = drvUsart0remapDataWidth,
+
+    .remapParity = drvUsart0remapParity,
+
+    .remapStopBits = drvUsart0remapStopBits,
+
+    .remapError = drvUsart0remapError,
+
+    .dataWidth = DRV_USART_DATA_8_BIT,
+};
+
+// </editor-fold>
 
 
 // *****************************************************************************
@@ -114,6 +211,46 @@ SYSTEM_OBJECTS sysObj;
 // Section: Library/Stack Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+/******************************************************
+ * USB Driver Initialization
+ ******************************************************/
+ 
+uint8_t __attribute__((aligned(512))) endPointTable1[DRV_USBFS_ENDPOINTS_NUMBER * 32];
+
+
+const DRV_USBFS_INIT drvUSBFSInit =
+{
+	 /* Assign the endpoint table */
+    .endpointTable= endPointTable1,
+
+
+	/* Interrupt Source for USB module */
+	.interruptSource = INT_SOURCE_USB,
+
+
+    
+    /* USB Controller to operate as USB Device */
+    .operationMode = DRV_USBFS_OPMODE_DEVICE,
+	
+	.operationSpeed = USB_SPEED_FULL,
+ 
+	/* Stop in idle */
+    .stopInIdle = false,
+	
+	    /* Suspend in sleep */
+    .suspendInSleep = false,
+ 
+    /* Identifies peripheral (PLIB-level) ID */
+    .usbID = USB_ID_1,
+	
+
+};
+
+
+
+
+
+
 
 
 // *****************************************************************************
@@ -187,11 +324,28 @@ void SYS_Initialize ( void* data )
 
 	GPIO_Initialize();
 
+    ADC_Initialize();
+
+    I2C2_Initialize();
+	UART2_Initialize();
+
     TMR1_Initialize();
 
 
+    /* Initialize I2C0 Driver Instance */
+    sysObj.drvI2C0 = DRV_I2C_Initialize(DRV_I2C_INDEX_0, (SYS_MODULE_INIT *)&drvI2C0InitData);
+    sysObj.drvUsart0 = DRV_USART_Initialize(DRV_USART_INDEX_0, (SYS_MODULE_INIT *)&drvUsart0InitData);
+
 
     sysObj.sysTime = SYS_TIME_Initialize(SYS_TIME_INDEX_0, (SYS_MODULE_INIT *)&sysTimeInitData);
+
+
+    /* Initialize the USB device layer */
+    sysObj.usbDevObject0 = USB_DEVICE_Initialize (USB_DEVICE_INDEX_0 , ( SYS_MODULE_INIT* ) & usbDevInitData);
+
+
+	/* Initialize USB Driver */ 
+    sysObj.drvUSBFSObject = DRV_USBFS_Initialize(DRV_USBFS_INDEX_0, (SYS_MODULE_INIT *) &drvUSBFSInit);	
 
 
     APP_Initialize();

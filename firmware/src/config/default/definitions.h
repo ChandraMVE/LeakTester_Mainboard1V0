@@ -51,14 +51,25 @@
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/gpio/plib_gpio.h"
 #include "peripheral/evic/plib_evic.h"
+#include "usb/usb_chapter_9.h"
+#include "usb/usb_device.h"
+#include "peripheral/adc/plib_adc.h"
+#include "system/time/sys_time.h"
+#include "driver/i2c/drv_i2c.h"
+#include "usb/usb_device_cdc.h"
+#include "usb/usb_cdc.h"
+#include "peripheral/i2c/master/plib_i2c2_master.h"
+#include "peripheral/uart/plib_uart2.h"
+#include "driver/usart/drv_usart.h"
+#include "driver/usb/usbfs/drv_usbfs.h"
 #include "peripheral/tmr1/plib_tmr1.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "system/int/sys_int.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
-#include "system/time/sys_time.h"
 #include "app.h"
+
 
 
 // DOM-IGNORE-BEGIN
@@ -182,7 +193,15 @@ Remarks:
 
 typedef struct
 {
+    /* I2C0 Driver Object */
+    SYS_MODULE_OBJ drvI2C0;
+
+    SYS_MODULE_OBJ  usbDevObject0;
+
     SYS_MODULE_OBJ  sysTime;
+    SYS_MODULE_OBJ  drvUsart0;
+	SYS_MODULE_OBJ  drvUSBFSObject;
+
 
 } SYSTEM_OBJECTS;
 
@@ -191,6 +210,8 @@ typedef struct
 // Section: extern declarations
 // *****************************************************************************
 // *****************************************************************************
+
+extern const USB_DEVICE_INIT usbDevInitData; 
 
 
 

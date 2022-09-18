@@ -61,10 +61,35 @@
 // *****************************************************************************
 
 
+void ADC_InterruptHandler( void );
+void UART_2_InterruptHandler( void );
+void I2C_2_InterruptHandler( void );
+void DRV_USBFS_USB_Handler( void );
 
 
 
 /* All the handlers are defined here.  Each will call its PLIB-specific function. */
+
+
+void ADC_Handler (void)
+{
+    ADC_InterruptHandler();
+}
+
+void UART_2_Handler (void)
+{
+    UART_2_InterruptHandler();
+}
+
+void I2C_2_Handler (void)
+{
+    I2C_2_InterruptHandler();
+}
+
+void USB_1_Handler (void)
+{
+    DRV_USBFS_USB_Handler();
+}
 
 
 
