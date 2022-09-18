@@ -1,0 +1,11 @@
+# ignore ALL .log files
+*.log
+
+# ignore ALL files in ANY directory named temp
+temp/
+debug/
+build/
+.generated_files/
+nbproject/
+dist/
+firmware/LeadTester_MB1V0.X
