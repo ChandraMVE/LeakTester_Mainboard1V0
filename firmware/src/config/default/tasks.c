@@ -101,7 +101,15 @@ void _buzzer_Tasks(  void *pvParameters  )
 {   
     while(1)
     {
-        buzzer_Tasks();
+//        buzzer_Tasks();
+    }
+}
+
+void _get_key_Tasks(  void *pvParameters  )
+{   
+    while(1)
+    {
+        get_key();
     }
 }
 
@@ -176,7 +184,14 @@ void SYS_Tasks ( void )
                 1,
                 (TaskHandle_t*)NULL);
 
-
+    /* Maintain the application's state machine. */
+    /* Create OS Thread for APP_Tasks. */
+    xTaskCreate((TaskFunction_t) _get_key_Tasks,
+                "get_key",
+                1024,
+                NULL,
+                1,
+                (TaskHandle_t*)NULL);
     /* Start RTOS Scheduler. */
     
      /**********************************************************************

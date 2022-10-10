@@ -28,6 +28,7 @@
 /* This section lists the other files that are included in this file.
  */
 #include "definitions.h"
+#include "keypad.h"
 /* TODO:  Include other files here if needed. */
 
 

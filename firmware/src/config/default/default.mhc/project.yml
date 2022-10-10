@@ -96,7 +96,7 @@ files:
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: BABBA17C76F6E90AEC41A0305B6B9CCF
+  userChecksum: 3063F96A40AC42BCC2825512E81299D0
 - generatedChecksum: 6D6401098F39D764FC8DD3ADC44C477A
   logicalPath: config/default
   name: interrupts.c
@@ -153,13 +153,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: C37E6A6CCC00070EF79DCF460186BC10
-- generatedChecksum: 415032811D5D8F796E5F0BB6F94AF3D5
+- generatedChecksum: AA12FAC01847F081EFEA28AFC6638F5C
   logicalPath: config/default/peripheral/gpio
   name: plib_gpio.c
   physicalPath: peripheral/gpio
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 415032811D5D8F796E5F0BB6F94AF3D5
+  userChecksum: AA12FAC01847F081EFEA28AFC6638F5C
 - generatedChecksum: 630DC8D3E57D856D033CBFDE30A5B5E2
   logicalPath: config/default/peripheral/i2c/master
   name: plib_i2c2_master.c
@@ -314,13 +314,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 4B11D1A616E95BDD37123685C8434FCF
-- generatedChecksum: 43037CB2D3CF54F609BE05CF22D8DDB7
+- generatedChecksum: 12D87F93EA4532EF464BD777EEF20910
   logicalPath: config/default
   name: definitions.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 43037CB2D3CF54F609BE05CF22D8DDB7
+  userChecksum: 12D87F93EA4532EF464BD777EEF20910
 - generatedChecksum: ACB7AD12FD525895ABA47C26F4F9A683
   logicalPath: FreeRTOS/Source/include
   name: deprecated_definitions.h

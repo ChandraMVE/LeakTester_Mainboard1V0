@@ -48,5 +48,12 @@ children:
       children:
       - type: User
         attributes: {value: 'true'}
+  - type: Float
+    attributes: {id: ADC_TCLK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: adc, value: '600.0'}
 - type: ElementPosition
   attributes: {x: '30', y: '220', id: adc}
