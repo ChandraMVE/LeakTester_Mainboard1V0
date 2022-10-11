@@ -29,6 +29,7 @@
  */
 #include "definitions.h"
 #include "keypad.h"
+#include "rtc.h"
 /* TODO:  Include other files here if needed. */
 
 

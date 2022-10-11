@@ -101,6 +101,7 @@ void _buzzer_Tasks(  void *pvParameters  )
 {   
     while(1)
     {
+        get_rtc();
 //        buzzer_Tasks();
     }
 }
@@ -112,8 +113,7 @@ void _get_key_Tasks(  void *pvParameters  )
         get_key();
     }
 }
-
-
+    
 // *****************************************************************************
 // *****************************************************************************
 // Section: System "Tasks" Routine
@@ -192,6 +192,7 @@ void SYS_Tasks ( void )
                 NULL,
                 1,
                 (TaskHandle_t*)NULL);
+    
     /* Start RTOS Scheduler. */
     
      /**********************************************************************

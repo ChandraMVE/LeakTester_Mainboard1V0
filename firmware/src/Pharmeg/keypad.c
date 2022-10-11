@@ -30,7 +30,7 @@ char keypad_scanner(void)
             GPIO_PinSet(KEYROW3);    
             if (GPIO_PinRead(KEYCOL0) == 0) { vTaskDelay(50 / portTICK_PERIOD_MS); while (GPIO_PinRead(KEYCOL0)==0); return 'r'; }//right
             if (GPIO_PinRead(KEYCOL1) == 0) { vTaskDelay(50 / portTICK_PERIOD_MS); while (GPIO_PinRead(KEYCOL1)==0); return 'E'; }//enter
-            if (GPIO_PinRead(KEYCOL2) == 0) { vTaskDelay(50 / portTICK_PERIOD_MS); while (GPIO_PinRead(KEYCOL2)==0); return 'n'; }//down
+            if (GPIO_PinRead(KEYCOL2) == 0) { vTaskDelay(50 / portTICK_PERIOD_MS); while (GPIO_PinRead(KEYCOL2)==0); return 'd'; }//down
             if (GPIO_PinRead(KEYCOL3) == 0) { vTaskDelay(50 / portTICK_PERIOD_MS); while (GPIO_PinRead(KEYCOL3)==0); return 'n'; }//
             if (GPIO_PinRead(KEYCOL4) == 0) { vTaskDelay(50 / portTICK_PERIOD_MS); while (GPIO_PinRead(KEYCOL4)==0); return 'n'; }//
             
@@ -76,21 +76,21 @@ char switch_press_scan(void)                       // Get key from user
     return key;                  //when key pressed then return its value
 }
 
+void key_bounce_sound(char key)
+{
+    if(key != 'n')
+    {
+        BUZZER_Set();
+        vTaskDelay(50 / portTICK_PERIOD_MS);
+        BUZZER_Clear();        
+    }
+}
+
 void get_key(void)
 {    
     char Key = 'n';
     InitKeypad();
-//    while(1)
-    {
-        Key = switch_press_scan();
-        if(Key == 'E')
-        {
-            BUZZER_Set();
-        }
-        
-        if(Key == '1')
-        {
-            BUZZER_Clear();
-        }
-    }
+
+    Key = switch_press_scan();
+    key_bounce_sound(Key);
 }
