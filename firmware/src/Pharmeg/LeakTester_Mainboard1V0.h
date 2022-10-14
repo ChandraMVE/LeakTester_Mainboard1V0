@@ -30,6 +30,12 @@
 #include "definitions.h"
 #include "keypad.h"
 #include "rtc.h"
+#include "NOPdelays.h"
+//#include "lcd/Arial14.h"
+//#include "lcd/GLCD.h"
+//#include "lcd/GLCD_Pins.h"
+//#include "lcd/SystemFont5x7.h"
+#include "lcd/glcd_new.h"
 /* TODO:  Include other files here if needed. */
 
 

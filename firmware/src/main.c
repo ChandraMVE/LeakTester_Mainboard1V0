@@ -27,6 +27,7 @@
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "definitions.h"                // SYS function prototypes
 #include "Pharmeg/rtc.h"
+#include "Pharmeg/LeakTester_Mainboard1V0.h"
 
 
 // *****************************************************************************
@@ -34,13 +35,19 @@
 // Section: Main Entry Point
 // *****************************************************************************
 // *****************************************************************************
-
+const char text_display[100] = "Hello World\n";
+long num = 10000;
 int main ( void )
 {
     /* Initialize all modules */
     SYS_Initialize ( NULL );
+//    GLCD_Init(true);
+//    GLCD_SelectFontEx(System5x7, BLACK, ReadPgmData);
+//    GLCD_PrintNumber(num);
+//    GLCD_FillRect(0,0,40,40,BLACK);    
 //    RTC_init();
 
+    glcd_new_init();
     while ( true )
     {
         /* Maintain state machines of all polled MPLAB Harmony modules. */

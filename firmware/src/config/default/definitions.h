@@ -61,6 +61,7 @@
 #include "peripheral/i2c/master/plib_i2c2_master.h"
 #include "peripheral/uart/plib_uart2.h"
 #include "driver/usart/drv_usart.h"
+#include "peripheral/tmr/plib_tmr2.h"
 #include "driver/usb/usbfs/drv_usbfs.h"
 #include "peripheral/tmr1/plib_tmr1.h"
 #include "FreeRTOS.h"
